@@ -15,7 +15,7 @@ namespace PokerVideoGame
     public partial class Form1 : Form
     {
         // GENEROWANIE NOWEJ TALII
-        private DeckOfCards deck = new DeckOfCards();
+        public DeckOfCards deck = new DeckOfCards();
         
 
         // List of files to show 
@@ -23,8 +23,9 @@ namespace PokerVideoGame
 
         // tablica z PictureBoxami - z CODINGHOMEWORK 
         private PictureBox[] pictures;
-        public const string imagePath = 
-            @"C:\Users\Mikolaj\source\repos\PokerVideoGame\PokerVideoGame\PNG-cards-1.3\";
+        public const string imagePath =
+            @"C:\Users\bilin\OneDrive\Pulpit\Nikolai\PokerVideoGame2\PokerVideoGame\PNG-cards-1.3";
+        
 
         public Form1()
         {
@@ -32,10 +33,24 @@ namespace PokerVideoGame
             // Z CODING HOMEWORK
             pictures = new PictureBox[52];
         }
+        string[] PathToCardNumber()
+        {
+            string[] cardsNumber=new string[Files.Count];
+            const string v = "char";
+            for (int i = 0; i < Files.Count; i++)
+            {
+
+                cardsNumber[i] = Files[i].Substring(84, Files[i].Length-84 - 4);
+
+            }
+            return cardsNumber;
+
+        }
        
         // z CODING HOMEWORK
         private void ShuffleCards()
         {
+            
             Random random = new Random();
             for (int i = 0; i < 1000; i++)
             {
@@ -73,23 +88,15 @@ namespace PokerVideoGame
             Files = new List<string>
                 (Directory.GetFiles(targetDirectory, "*.*", SearchOption.TopDirectoryOnly)
                 .Where(s => ext.Any(e => s.EndsWith(e))));
+
             // Potasuj karty przed rozpczeciem gry
             ShuffleCards();
-            // Create timer to call timer1_Tick every 3 seconds 
-            /* timer1 = new System.Windows.Forms.Timer();
-             timer1.Tick += new EventHandler(timer1_Tick);
-             timer1.Interval = 3000; // 3 seconds
-             timer1.Start();
-            */
+            
             ChangePicture();
           
 
         }
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            ChangePicture();
-            timer1.Stop();
-        }
+
 
         private void ChangePicture()
         {
@@ -100,8 +107,13 @@ namespace PokerVideoGame
             // Do we have pictures in list?
             if(Files.Count > 2)
             {
+                
                 // OK lets grab the first one
                 string File = Files.First();
+
+                Console.WriteLine("XDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
+                string[] cardsNumber=PathToCardNumber();
+                Console.WriteLine(File);
                 // Load it
                 // 1st card
                 pictureBox1.Load(File);
@@ -188,7 +200,7 @@ namespace PokerVideoGame
 
         private void button7_Click(object sender, EventArgs e)
         {
-            timer1.Start();
+            ChangePicture();
         }
 
         private void label1_Click(object sender, EventArgs e)
