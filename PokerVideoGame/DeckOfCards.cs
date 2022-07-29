@@ -35,7 +35,7 @@ namespace PokerVideoGame
                 }
             }
             // po utworzeniu talii karty zostaja potasowane
-            ShuffleCards();
+            //ShuffleCards();
         }
         // tasowanie kart
         public void ShuffleCards()
@@ -55,6 +55,13 @@ namespace PokerVideoGame
                     deck[secondCardsIndex] = temp;
                 }
             }
+        }
+        
+        public string printCardName(int i)
+        {
+            Card card = deck[i-1];
+            Console.WriteLine(card.MyValue + " of " + card.MySuit);
+            return card.MyValue + " of " + card.MySuit;
         }
     }
 }
