@@ -63,5 +63,11 @@ namespace PokerVideoGame
             Console.WriteLine(card.MyValue + " of " + card.MySuit);
             return card.MyValue + " of " + card.MySuit;
         }
+        public Card cardValue(int i)
+        {
+            Card card = deck[i - 1];
+            Console.WriteLine(card);
+            return card;
+        }
     }
 }
