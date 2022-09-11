@@ -34,40 +34,19 @@ namespace PokerVideoGame
                     i++;
                 }
             }
-            // po utworzeniu talii karty zostaja potasowane
-            //ShuffleCards();
         }
-        // tasowanie kart
-        public void ShuffleCards()
-        {
-            Random rand = new Random();
-            Card temp;
 
-            // run the shuffle 1000 times
-            for (int shuffleTimes = 0; shuffleTimes < 1000; shuffleTimes++)
-            {
-                for (int i = 0; i < NUM_OF_CARDS; i++)
-                {
-                    // swap the cards
-                    int secondCardsIndex = rand.Next(13);
-                    temp = deck[i]; // aktualna karta
-                    deck[i] = deck[secondCardsIndex]; // podmiana na inna wylosowana karte
-                    deck[secondCardsIndex] = temp;
-                }
-            }
-        }
-        
         public string printCardName(int i)
         {
-            Card card = deck[i-1];
+            Card card = deck[i - 1];
             Console.WriteLine(card.MyValue + " of " + card.MySuit);
             return card.MyValue + " of " + card.MySuit;
         }
         public Card cardValue(int i)
         {
             Card card = deck[i - 1];
-            Console.WriteLine(card);
             return card;
         }
+
     }
 }
